@@ -10,7 +10,6 @@ import GlobalVideoPlayer from "./components/GlobalVideoPlayer";
 import CustomCursor      from "./components/CustomCursor";
 import Footer            from "./components/Footer";
 
-// ← Replace with your actual domain once you know it
 const SITE_URL = "https://ankymusic.com";
 
 const schema = {
@@ -27,9 +26,8 @@ const schema = {
       image: `${SITE_URL}/anky1.jpg`,
       sameAs: [
         "https://www.instagram.com/lh5.anky",
-        "https://open.spotify.com/artist/YOUR_ID",
-        "https://www.youtube.com/@YOUR_HANDLE",
-        "https://soundcloud.com/YOUR_HANDLE",
+        "https://open.spotify.com/artist/6IUsCGkEa3mgApHKonXhLf",
+        "https://www.youtube.com/@ANKY.LH5",
       ],
     },
     {
@@ -70,6 +68,52 @@ const schema = {
           },
         ],
       },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/#faq`,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What genres does Anky produce?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Anky produces hip-hop, R&B, and electronic music. On one side there are soulful hip-hop and R&B beats built around 808s and atmosphere; on the other, heavy electronic music with detailed sound design and bass.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can I book Anky for a DJ set or live performance?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Anky is available for DJ sets at clubs, events, and festivals. You can send a booking enquiry through the contact page at ankymusic.com/contact.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Does Anky make custom beats for artists?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Anky produces custom beats tailored to the artist's vision across hip-hop, R&B, and electronic genres. Reach out via the contact page to discuss your project.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Where is Anky based?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Anky is based in Prague, Czech Republic, and works with artists remotely worldwide.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Where can I listen to Anky's music?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Anky's music is available on Spotify at open.spotify.com/artist/6IUsCGkEa3mgApHKonXhLf and on YouTube at youtube.com/@ANKY.LH5.",
+          },
+        },
+      ],
     },
   ],
 };
