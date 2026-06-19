@@ -1,26 +1,216 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Commercial fonts — place woff2 files in /public/fonts/ when available.
+ * The @font-face declarations fail silently (browser falls back) if files
+ * are absent, so the build always succeeds.
+ */
+@font-face {
+  font-family: "Neue Plak";
+  src: url("/fonts/NeuePlak-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Plak";
+  src: url("/fonts/NeuePlak-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Plak";
+  src: url("/fonts/NeuePlak-ExtraBlack.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Avant Garde Gothic";
+  src: url("/fonts/AvantGardeGothic-Book.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Avant Garde Gothic";
+  src: url("/fonts/AvantGardeGothic-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Design tokens ──────────────────────────────────────────────────────── */
+@theme {
+  /* Colors */
+  --color-charcoal:   #40434E;   /* background / dominant */
+  --color-off-white:  #FFFFFA;   /* primary text */
+  --color-olive-gold: #808705;   /* accent 1 — signal indicator */
+  --color-crimson:    #912F40;   /* accent 2 — clip indicator */
+
+  /* Semantic aliases — keeps markup intent-legible */
+  --color-bg:      var(--color-charcoal);
+  --color-fg:      var(--color-off-white);
+  --color-accent:  var(--color-olive-gold);
+  --color-signal:  var(--color-crimson);
+
+  /* Typography — @font-face declarations above; fallbacks used until files are placed */
+  --font-heading: "Neue Plak", "Arial Black", sans-serif;
+  --font-body:    "Avant Garde Gothic", "Century Gothic", "Trebuchet MS", sans-serif;
+
+  /* Spacing scale extensions */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+  --spacing-30: 7.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─── Base layer ─────────────────────────────────────────────────────────── */
+/* Hide native cursor on pointer (mouse) devices — CustomCursor replaces it */
+@media (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: var(--color-off-white);
+    color: var(--color-charcoal);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: auto; /* Lenis owns smooth scrolling — disable native */
+  }
+
+  body {
+    min-height: 100svh;
+    /* Prevent rogue elements from causing horizontal scroll on mobile */
+    overflow-x: hidden;
+  }
+
+  /* Selection highlight */
+  ::selection {
+    background-color: var(--color-crimson);
+    color: var(--color-off-white);
+  }
+
+  /* Heading elements default to the display font */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  /* Focus ring — accessible, on-brand */
+  :focus-visible {
+    outline: 2px solid var(--color-crimson);
+    outline-offset: 3px;
+  }
+
+  /* Remove default list styles on nav contexts */
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── Utilities ──────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Text rendering quality for large display type */
+  .text-render-opt {
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+
+  /* Horizontal volume slider (legacy, kept for reference) */
+  .volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 5rem;
+    height: 3px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 250, 0.22);
+    cursor: pointer;
+    outline: none;
+  }
+
+  /*
+   * Vertical volume fader — rendered as a rotated horizontal slider.
+   * Container must be h-24 w-5 with overflow-visible to give it room.
+   */
+  .volume-fader {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 88px;   /* becomes the visual height after rotation */
+    height: 3px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 250, 0.2);
+    cursor: pointer;
+    outline: none;
+    transform: rotate(-90deg);
+    display: block;
+  }
+  .volume-fader::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 13px;
+    height: 13px;
+    border-radius: 9999px;
+    background: #FFFFFA;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+  .volume-fader::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+  }
+  .volume-fader::-moz-range-thumb {
+    width: 13px;
+    height: 13px;
+    border: none;
+    border-radius: 9999px;
+    background: #FFFFFA;
+    cursor: pointer;
+  }
+  .volume-fader::-moz-range-track {
+    background: transparent;
+  }
+
+  /* Hide scrollbar while preserving scroll functionality */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ─── Paragraph triangle indicator ──────────────────────────────────────── */
+@keyframes triangle-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.12; }
+}
+
+.triangle-blink {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 4.5px solid transparent;
+  border-bottom: 4.5px solid transparent;
+  border-left: 7px solid #912F40;
+  flex-shrink: 0;
+  animation: triangle-blink 1.8s ease-in-out infinite;
+}
+
+/* ─── ANKY backdrop — larger on mobile, standard on desktop ──────────────── */
+.anky-hero-size {
+  font-size: clamp(4.5rem, 35vw, 19rem);
+}
+@media (min-width: 640px) {
+  .anky-hero-size {
+    font-size: clamp(3rem, 21vw, 19rem);
+  }
 }
