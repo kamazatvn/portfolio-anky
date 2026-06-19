@@ -26,7 +26,7 @@ const schema = {
         "Official portfolio of Anky — music producer and DJ specializing in hip-hop, R&B, and electronic music. Based in Prague, Czech Republic.",
       image: `${SITE_URL}/anky1.jpg`,
       sameAs: [
-        "https://www.instagram.com/YOUR_HANDLE",
+        "https://www.instagram.com/lh5.anky",
         "https://open.spotify.com/artist/YOUR_ID",
         "https://www.youtube.com/@YOUR_HANDLE",
         "https://soundcloud.com/YOUR_HANDLE",

@@ -40,7 +40,7 @@ function SpotifyIcon() {
 /* ─── Data ────────────────────────────────────────────────────────────────── */
 
 const SOCIALS = [
-  { label: "Instagram", href: "https://www.instagram.com/anky.lh5/",                                                            icon: <InstagramIcon /> },
+  { label: "Instagram", href: "https://www.instagram.com/lh5.anky/",                                                            icon: <InstagramIcon /> },
   { label: "YouTube",   href: "https://www.youtube.com/channel/UCYOLHKT9zhHoOR2JLTlJnjA",                                       icon: <YouTubeIcon />   },
   { label: "TikTok",    href: "https://www.tiktok.com/@ankyofficially",                                                          icon: <TikTokIcon />    },
   { label: "Spotify",   href: "https://open.spotify.com/artist/6IUsCGkEa3mgApHKonXhLf?si=3vw3ECyORN-tSeT5dkOodw",              icon: <SpotifyIcon />   },
