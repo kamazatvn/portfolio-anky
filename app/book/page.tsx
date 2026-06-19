@@ -4,9 +4,15 @@ import ArtistsGrid   from "../components/book/ArtistsGrid";
 import EventsTimeline from "../components/book/EventsTimeline";
 
 export const metadata: Metadata = {
-  title: "Book — Anky",
+  title: "Book",
   description:
-    "Book Anky for DJ sets and music production. Hip-hop DJ in Prague and music producer working with artists across Vietnam and the Czech Republic.",
+    "Book Anky for DJ sets, live performances, or studio production sessions. Prague-based hip-hop DJ and music producer working with artists across Europe and Vietnam.",
+  openGraph: {
+    title: "Book Anky | DJ Sets & Music Production",
+    description:
+      "Book Anky for DJ sets, live performances, or studio production sessions. Available worldwide.",
+    images: [{ url: "/anky1.jpg", width: 1200, height: 630, alt: "Anky — Music Producer & DJ" }],
+  },
 };
 
 export default function BookPage() {

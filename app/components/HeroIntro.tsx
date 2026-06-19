@@ -134,7 +134,7 @@ export default function HeroIntro() {
                 Desktop (sm+): contain+center shows transparent PNG with ANKY showing through. */}
             <Image
               src="/producer.png"
-              alt="Anky"
+              alt="Anky — music producer and DJ"
               fill
               className="object-cover object-top sm:object-contain sm:object-center"
               priority
