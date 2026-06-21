@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useLanguage } from "../providers/LanguageProvider";
 
 export default function NewsletterForm() {
   const [email, setEmail]         = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const { t } = useLanguage();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -27,17 +29,17 @@ export default function NewsletterForm() {
           className="max-w-2xl"
         >
           <p className="text-xs tracking-[0.35em] text-crimson/55 font-body uppercase mb-4">
-            Stay Connected
+            {t.newsletter.eyebrow}
           </p>
 
           <h2 className="font-heading font-black text-[clamp(2.5rem,6vw,5rem)] leading-[0.95] text-crimson text-render-opt mb-5">
-            STAY IN
+            {t.newsletter.headingLine1}
             <br />
-            THE LOOP
+            {t.newsletter.headingLine2}
           </h2>
 
           <p className="text-crimson/60 font-body mb-10 text-base leading-relaxed">
-            New drops, tour dates, and exclusive content — direct to your inbox.
+            {t.newsletter.body}
           </p>
 
           <AnimatePresence mode="wait">
@@ -61,7 +63,7 @@ export default function NewsletterForm() {
                   type="submit"
                   className="bg-crimson text-off-white font-body font-medium text-sm tracking-widest uppercase px-8 py-4 hover:bg-charcoal transition-colors duration-300 whitespace-nowrap"
                 >
-                  Subscribe →
+                  {t.newsletter.subscribe}
                 </button>
               </motion.form>
             ) : (
@@ -72,7 +74,7 @@ export default function NewsletterForm() {
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className="text-crimson/80 font-body text-sm tracking-wide"
               >
-                You&apos;re on the list. Stay tuned for the next drop. ✓
+                {t.newsletter.success}
               </motion.p>
             )}
           </AnimatePresence>

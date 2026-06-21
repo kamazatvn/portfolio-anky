@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import Link from "next/link";
+import { useLanguage } from "../providers/LanguageProvider";
 
 const releases = [
   { id: 1, title: "Frequency Shift", type: "EP",     year: "2024", tracks: 5  },
@@ -10,6 +11,7 @@ const releases = [
 ];
 
 export default function ReleasesGrid() {
+  const { t } = useLanguage();
   return (
     <section className="px-5 md:px-16 lg:px-24 py-16 md:py-24">
       <div className="max-w-7xl mx-auto">
@@ -22,14 +24,14 @@ export default function ReleasesGrid() {
           className="flex items-center gap-6 mb-16"
         >
           <span className="text-xs tracking-[0.35em] text-olive-gold font-body uppercase whitespace-nowrap">
-            Latest Releases
+            {t.releases.sectionTitle}
           </span>
           <div className="flex-1 h-px bg-charcoal/10" />
           <Link
             href="/projects"
             className="text-xs tracking-[0.2em] text-charcoal/35 hover:text-charcoal transition-colors duration-300 font-body uppercase whitespace-nowrap"
           >
-            View All →
+            {t.releases.viewAll}
           </Link>
         </motion.div>
 
@@ -50,6 +52,7 @@ function ReleaseCard({
   release: (typeof releases)[number];
   index: number;
 }) {
+  const { t } = useLanguage();
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -89,7 +92,7 @@ function ReleaseCard({
           </h3>
           <p className="text-xs text-charcoal/40 font-body mt-1.5 tracking-wide">
             {release.type} &middot; {release.tracks}{" "}
-            {release.tracks === 1 ? "Track" : "Tracks"}
+            {release.tracks === 1 ? t.releases.track : t.releases.tracks}
           </p>
         </div>
         <span className="text-xs text-charcoal/25 font-body mt-0.5 shrink-0">

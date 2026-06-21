@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useLanguage } from "../../providers/LanguageProvider";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -56,6 +57,7 @@ const EVENTS = [
 ];
 
 export default function EventsTimeline() {
+  const { t } = useLanguage();
   return (
     <section className="px-5 md:px-16 lg:px-24 py-16 border-t border-charcoal/8 bg-off-white">
       <div className="max-w-7xl mx-auto">
@@ -69,21 +71,21 @@ export default function EventsTimeline() {
           className="flex items-center gap-6 mb-10"
         >
           <span className="text-xs tracking-[0.35em] text-olive-gold font-body uppercase whitespace-nowrap">
-            Past Events
+            {t.events.sectionTitle}
           </span>
           <div className="flex-1 h-px bg-charcoal/10" />
           <span className="text-xs text-charcoal/20 font-body tabular-nums">
-            {EVENTS.length} shows
+            {EVENTS.length} {t.events.shows}
           </span>
         </motion.div>
 
         {/* Column headings */}
         <div className="grid grid-cols-12 gap-4 mb-4 px-1">
           {[
-            { label: "Date",      span: "col-span-3 md:col-span-2"  },
-            { label: "Event",     span: "col-span-9 md:col-span-4"  },
-            { label: "With",      span: "hidden md:block md:col-span-2" },
-            { label: "Venue",     span: "hidden md:block md:col-span-4" },
+            { label: t.events.columns.date,  span: "col-span-3 md:col-span-2"      },
+            { label: t.events.columns.event, span: "col-span-9 md:col-span-4"      },
+            { label: t.events.columns.with,  span: "hidden md:block md:col-span-2" },
+            { label: t.events.columns.venue, span: "hidden md:block md:col-span-4" },
           ].map(({ label, span }) => (
             <span
               key={label}

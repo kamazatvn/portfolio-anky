@@ -4,21 +4,24 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
+import { useLanguage } from "../providers/LanguageProvider";
+import LanguageToggle from "./LanguageToggle";
 
 type NavLink = { href: string; label: string };
-
-const links: NavLink[] = [
-  { href: "/about",    label: "About"     },
-  { href: "/projects", label: "Portfolio" },
-  { href: "/book",     label: "Book"      },
-  { href: "/contact",  label: "Contact"   },
-];
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const links: NavLink[] = [
+    { href: "/about",    label: t.nav.about     },
+    { href: "/projects", label: t.nav.portfolio  },
+    { href: "/book",     label: t.nav.book       },
+    { href: "/contact",  label: t.nav.contact    },
+  ];
 
   // Lock body scroll while mobile menu is open
   useEffect(() => {
@@ -52,12 +55,12 @@ export default function Nav() {
             ANKY
           </Link>
 
-          {/* Desktop nav links */}
+          {/* Desktop nav links + language toggle */}
           <ul className="hidden sm:flex items-center gap-4 md:gap-8">
             {links.map(({ href, label }) => {
               const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
               return (
-                <li key={label}>
+                <li key={href}>
                   <Link
                     href={href}
                     className={[
@@ -76,12 +79,18 @@ export default function Nav() {
                 </li>
               );
             })}
+            <li>
+              <span className="text-charcoal/15 text-xs" aria-hidden="true">|</span>
+            </li>
+            <li>
+              <LanguageToggle />
+            </li>
           </ul>
 
           {/* Hamburger button — mobile only */}
           <button
             onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={open}
             className="sm:hidden w-10 h-10 shrink-0 flex items-center justify-center"
           >
@@ -145,15 +154,18 @@ export default function Nav() {
               );
             })}
 
-            {/* Subtle footer inside the overlay */}
-            <motion.p
+            {/* Language toggle + email — mobile overlay footer */}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.32, duration: 0.4 }}
-              className="absolute bottom-10 text-[0.6rem] tracking-[0.3em] text-charcoal/20 font-body uppercase"
+              className="absolute bottom-10 flex flex-col items-center gap-3"
             >
-              anky.lohi5@gmail.com
-            </motion.p>
+              <LanguageToggle />
+              <p className="text-[0.6rem] tracking-[0.3em] text-charcoal/20 font-body uppercase">
+                anky.lohi5@gmail.com
+              </p>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

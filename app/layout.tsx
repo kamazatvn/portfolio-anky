@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { LanguageProvider } from "./providers/LanguageProvider";
 import SmoothScrollProvider  from "./providers/SmoothScrollProvider";
 import { AudioPlayerProvider } from "./providers/AudioPlayerProvider";
 import { VideoPlayerProvider } from "./providers/VideoPlayerProvider";
@@ -9,6 +10,7 @@ import MiniPlayer        from "./components/MiniPlayer";
 import GlobalVideoPlayer from "./components/GlobalVideoPlayer";
 import CustomCursor      from "./components/CustomCursor";
 import Footer            from "./components/Footer";
+import LanguageMeta      from "./components/LanguageMeta";
 
 const SITE_URL = "https://ankymusic.com";
 
@@ -187,20 +189,23 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full antialiased flex flex-col">
-        <SmoothScrollProvider>
-          <AudioPlayerProvider>
-            <VideoPlayerProvider>
-              <SiteRevealWrapper>
-                <Nav />
-                <div className="flex-1">{children}</div>
-                <Footer />
-                <MiniPlayer />
-                <GlobalVideoPlayer />
-                <CustomCursor />
-              </SiteRevealWrapper>
-            </VideoPlayerProvider>
-          </AudioPlayerProvider>
-        </SmoothScrollProvider>
+        <LanguageProvider>
+          <LanguageMeta />
+          <SmoothScrollProvider>
+            <AudioPlayerProvider>
+              <VideoPlayerProvider>
+                <SiteRevealWrapper>
+                  <Nav />
+                  <div className="flex-1">{children}</div>
+                  <Footer />
+                  <MiniPlayer />
+                  <GlobalVideoPlayer />
+                  <CustomCursor />
+                </SiteRevealWrapper>
+              </VideoPlayerProvider>
+            </AudioPlayerProvider>
+          </SmoothScrollProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

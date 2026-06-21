@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useLanguage } from "../providers/LanguageProvider";
 
 /* ─── Icon components ─────────────────────────────────────────────────────── */
 
@@ -49,6 +50,7 @@ const SOCIALS = [
 /* ─── Component ───────────────────────────────────────────────────────────── */
 
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <footer style={{ backgroundColor: "#912F40" }} className="text-off-white">
       <div className="px-5 md:px-16 lg:px-24 py-6">
@@ -63,7 +65,7 @@ export default function Footer() {
               ANKY
             </Link>
             <p className="text-[0.55rem] tracking-[0.22em] text-off-white/50 font-body uppercase mt-0.5">
-              Music Producer &amp; DJ — Praha
+              {t.footer.tagline}
             </p>
           </div>
 
@@ -108,7 +110,7 @@ export default function Footer() {
             className="opacity-55 object-contain"
           />
           <span className="text-[0.5rem] tracking-[0.22em] font-body uppercase text-off-white/40">
-            Powered by Lohi5 Production
+            {t.footer.poweredBy}
           </span>
         </div>
 

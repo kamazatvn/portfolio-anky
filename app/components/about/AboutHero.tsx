@@ -10,6 +10,7 @@ import {
   type MotionValue,
 } from "motion/react";
 import Image from "next/image";
+import { useLanguage } from "../../providers/LanguageProvider";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -65,16 +66,11 @@ function ScrollBoldParagraph({
   );
 }
 
-/* ─── Sequential bold: both paragraphs share one scroll progress ─────────── */
-
-const P1 =
-  "ANKY is a multi-genre music producer, DJ, and sound engineer originally from Vietnam and now based in Prague, Czech Republic. With over eight years in the music industry, he has built a reputation for versatility, moving comfortably between hip-hop, R&B, and electronic music. Whether in the studio or behind the decks, his focus stays the same: crafting sound that connects with people instantly.";
-const P2 =
-  "In person, ANKY is naturally calm, with a clean and minimalistic style, but his music tells a different story. On stage and in the studio, he delivers a colorful, high-energy experience that gets crowds moving and keeps them there. Over the years, he has collaborated with many well-known artists in both Vietnam and the Czech Republic. That mix of quiet confidence and bold sound has become his signature.";
-const P3 =
-  "ANKY's mission goes beyond making great tracks. His ultimate goal is to beautifully blend modern electronic music with traditional Vietnamese styles and elements, creating a sound that belongs to him alone. He believes these two worlds aren't opposites. They're a perfect match waiting to happen. Through every release and every set, he's working to bring that unique sound to the global stage.";
-
 function SequentialBoldText({ className, imageSlot }: { className?: string; imageSlot?: React.ReactNode }) {
+  const { t } = useLanguage();
+  const P1 = t.about.p1;
+  const P2 = t.about.p2;
+  const P3 = t.about.p3;
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -118,12 +114,9 @@ function SequentialBoldText({ className, imageSlot }: { className?: string; imag
   );
 }
 
-/* ─── Philosophy section: fill-text reveal on scroll ────────────────────── */
-
-const QUOTE =
-  "“Good music creates a world of its own. My focus is entirely on atmosphere and feeling. I design sounds and produce tracks meant to be experienced fully, giving the listener a cinematic space where they can instantly imagine themselves and just let go.”";
-
 function PhilosophySection() {
+  const { t } = useLanguage();
+  const QUOTE = t.about.philosophyQuote;
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -153,7 +146,7 @@ function PhilosophySection() {
         >
           <div className="lg:col-span-2">
             <span className="text-xs tracking-[0.35em] text-olive-gold font-body uppercase">
-              Philosophy
+              {t.about.philosophy}
             </span>
           </div>
 
@@ -182,7 +175,7 @@ function PhilosophySection() {
             </div>
 
             <p className="mt-8 text-charcoal/50 font-body text-base leading-relaxed max-w-2xl">
-              To build these spaces, I rely on contrast. I love blending the heavy, modern energy of electronic music with the deep, traditional textures of my Vietnamese roots. While my personal approach in the studio is calm and minimalist, the sound itself is designed to be colorful and full of life, giving the audience a wonderful place where they can move freely, feel the bass, and completely connect with the moment.
+              {t.about.philosophyBody}
             </p>
           </div>
         </motion.div>
@@ -244,6 +237,7 @@ function StatCounter({
 /* ─── Main component ─────────────────────────────────────────────────────── */
 
 export default function AboutHero() {
+  const { t } = useLanguage();
   return (
     <>
       {/* ── 1. Intro ──────────────────────────────────────────────── */}
@@ -256,7 +250,7 @@ export default function AboutHero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-xs tracking-[0.35em] text-olive-gold font-body uppercase mb-12"
           >
-            About
+            {t.about.eyebrow}
           </motion.p>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
@@ -268,11 +262,11 @@ export default function AboutHero() {
                 transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
                 className="font-heading font-black text-[clamp(3rem,8vw,7rem)] leading-[0.9] tracking-tight text-crimson text-render-opt"
               >
-                DO
+                {t.about.headingLine1}
                 <br />
-                WHAT YOU
+                {t.about.headingLine2}
                 <br />
-                FEEL
+                {t.about.headingLine3}
               </motion.h1>
 
               <SequentialBoldText
@@ -300,7 +294,7 @@ export default function AboutHero() {
                   className="opacity-60 object-contain"
                 />
                 <p className="text-[0.6rem] tracking-[0.22em] text-charcoal/40 font-body uppercase">
-                  Powered by <span className="text-charcoal/65 font-medium">Lohi5 Production</span>
+                  {t.about.poweredBy} <span className="text-charcoal/65 font-medium">Lohi5 Production</span>
                 </p>
               </div>
             </div>
@@ -331,9 +325,9 @@ export default function AboutHero() {
       <section className="px-8 md:px-16 lg:px-24 py-8 sm:py-20 border-t border-charcoal/10">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-charcoal/8">
-            <StatCounter target={8}   suffix="+"  label="Years Active"      delay={0}   />
-            <StatCounter target={200} suffix="+"  label="Tracks Produced"   delay={0.1} />
-            <StatCounter target={10}  suffix="+"  label="Live Performances" delay={0.2} />
+            <StatCounter target={8}   suffix="+"  label={t.about.yearsActive}      delay={0}   />
+            <StatCounter target={200} suffix="+"  label={t.about.tracksProduced}   delay={0.1} />
+            <StatCounter target={10}  suffix="+"  label={t.about.livePerformances} delay={0.2} />
           </div>
         </div>
       </section>

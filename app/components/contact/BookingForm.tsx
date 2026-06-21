@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useLanguage } from "../../providers/LanguageProvider";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -34,7 +35,8 @@ const COUNTRY_CODES = [
   { code: "+91",  label: "+91  IN" },
 ];
 
-const SERVICES = [
+// English values are always sent to the API regardless of active language
+const SERVICE_VALUES = [
   "DJ Performance",
   "Music Production",
   "Co-Production",
@@ -65,17 +67,6 @@ type Status = "idle" | "sending" | "success" | "error";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function validate(f: Fields): Errors {
-  const e: Errors = {};
-  if (!f.name.trim())    e.name    = "Full name is required.";
-  if (!f.email.trim())   e.email   = "Email address is required.";
-  else if (!EMAIL_RE.test(f.email.trim())) e.email = "Please enter a valid email address.";
-  if (!f.phone.trim())   e.phone   = "Phone number is required.";
-  if (!f.service)        e.service = "Please select a service.";
-  if (!f.message.trim()) e.message = "Message is required.";
-  return e;
-}
-
 const BLANK: Fields = {
   name: "", email: "", countryCode: "+420", phone: "", service: "", message: "",
 };
@@ -88,6 +79,19 @@ export default function BookingForm() {
   const [errors,  setErrors]  = useState<Errors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof Fields, boolean>>>({});
   const [status,  setStatus]  = useState<Status>("idle");
+  const { t } = useLanguage();
+
+  function validate(f: Fields): Errors {
+    const v = t.booking.validation;
+    const e: Errors = {};
+    if (!f.name.trim())    e.name    = v.nameRequired;
+    if (!f.email.trim())   e.email   = v.emailRequired;
+    else if (!EMAIL_RE.test(f.email.trim())) e.email = v.emailInvalid;
+    if (!f.phone.trim())   e.phone   = v.phoneRequired;
+    if (!f.service)        e.service = v.serviceRequired;
+    if (!f.message.trim()) e.message = v.messageRequired;
+    return e;
+  }
 
   const currentErrors = validate(fields);
   const isValid = Object.keys(currentErrors).length === 0;
@@ -159,12 +163,12 @@ export default function BookingForm() {
             className="lg:col-span-6"
           >
             <p className="text-xs tracking-[0.35em] text-olive-gold font-body uppercase mb-6">
-              Bookings &amp; Inquiries
+              {t.booking.eyebrow}
             </p>
             <h2 className="font-heading font-black text-[clamp(3rem,8vw,7rem)] leading-[0.88] tracking-tight text-crimson text-render-opt">
-              LET&apos;S
+              {t.booking.headingLine1}
               <br />
-              WORK
+              {t.booking.headingLine2}
             </h2>
           </motion.div>
 
@@ -176,9 +180,7 @@ export default function BookingForm() {
             className="lg:col-span-5 lg:col-start-8 self-end pb-1"
           >
             <p className="text-charcoal/50 font-body text-sm leading-relaxed">
-              Available for DJ sets, studio sessions, co-productions, and
-              creative collaborations. Fill in the form and I&apos;ll get back
-              to you within 48 hours.
+              {t.booking.body}
             </p>
           </motion.div>
         </div>
@@ -196,17 +198,16 @@ export default function BookingForm() {
             >
               <div className="w-12 h-px bg-olive-gold" />
               <p className="font-heading font-black text-[clamp(1.8rem,4vw,3.5rem)] leading-tight text-crimson">
-                Message Sent.
+                {t.booking.success.heading}
               </p>
               <p className="text-charcoal/60 font-body text-sm leading-relaxed max-w-md">
-                Thank you! Your message has been sent directly to Anky. Expect a
-                reply within 48 hours.
+                {t.booking.success.body}
               </p>
               <button
                 onClick={() => setStatus("idle")}
                 className="mt-2 text-xs tracking-widest uppercase font-body text-charcoal/40 hover:text-crimson transition-colors duration-200 underline underline-offset-4"
               >
-                Send another message
+                {t.booking.submit.another}
               </button>
             </motion.div>
           ) : (
@@ -224,7 +225,7 @@ export default function BookingForm() {
               {/* Full Name */}
               <div className="md:col-span-1">
                 <label className={LABEL}>
-                  Full Name <span className="text-crimson">*</span>
+                  {t.booking.labels.fullName} <span className="text-crimson">*</span>
                 </label>
                 <input
                   name="name"
@@ -232,7 +233,7 @@ export default function BookingForm() {
                   value={fields.name}
                   onChange={e => set("name", e.target.value)}
                   onBlur={() => blur("name")}
-                  placeholder="Your full name"
+                  placeholder={t.booking.placeholders.name}
                   className={`${INPUT} ${borderClass("name")}`}
                 />
                 <FieldError msg={fieldError("name")} />
@@ -241,7 +242,7 @@ export default function BookingForm() {
               {/* Email */}
               <div className="md:col-span-1">
                 <label className={LABEL}>
-                  Email Address <span className="text-crimson">*</span>
+                  {t.booking.labels.email} <span className="text-crimson">*</span>
                 </label>
                 <input
                   name="email"
@@ -249,7 +250,7 @@ export default function BookingForm() {
                   value={fields.email}
                   onChange={e => set("email", e.target.value)}
                   onBlur={() => blur("email")}
-                  placeholder="you@example.com"
+                  placeholder={t.booking.placeholders.email}
                   className={`${INPUT} ${borderClass("email")}`}
                 />
                 <FieldError msg={fieldError("email")} />
@@ -258,7 +259,7 @@ export default function BookingForm() {
               {/* Phone with country code */}
               <div className="md:col-span-1">
                 <label className={LABEL}>
-                  Phone Number <span className="text-crimson">*</span>
+                  {t.booking.labels.phone} <span className="text-crimson">*</span>
                 </label>
                 <div className={`flex gap-2 border-b transition-colors duration-200 ${touched.phone && errors.phone ? "border-crimson" : "border-charcoal/20 focus-within:border-crimson"}`}>
                   <select
@@ -278,7 +279,7 @@ export default function BookingForm() {
                     value={fields.phone}
                     onChange={e => set("phone", e.target.value)}
                     onBlur={() => blur("phone")}
-                    placeholder="773 115 935"
+                    placeholder={t.booking.placeholders.phone}
                     className="flex-1 bg-transparent text-charcoal font-body text-sm py-3 outline-none placeholder:text-charcoal/25"
                   />
                 </div>
@@ -288,7 +289,7 @@ export default function BookingForm() {
               {/* Service Type */}
               <div className="md:col-span-1">
                 <label className={LABEL}>
-                  Service Type <span className="text-crimson">*</span>
+                  {t.booking.labels.service} <span className="text-crimson">*</span>
                 </label>
                 <select
                   name="service"
@@ -297,9 +298,9 @@ export default function BookingForm() {
                   onBlur={() => blur("service")}
                   className={`${INPUT} cursor-pointer appearance-none ${borderClass("service")}`}
                 >
-                  <option value="" disabled>Select a service…</option>
-                  {SERVICES.map(s => (
-                    <option key={s} value={s}>{s}</option>
+                  <option value="" disabled>{t.booking.placeholders.service}</option>
+                  {SERVICE_VALUES.map((val, i) => (
+                    <option key={val} value={val}>{t.booking.services[i]}</option>
                   ))}
                 </select>
                 <FieldError msg={fieldError("service")} />
@@ -308,7 +309,7 @@ export default function BookingForm() {
               {/* Message */}
               <div className="md:col-span-2">
                 <label className={LABEL}>
-                  Message <span className="text-crimson">*</span>
+                  {t.booking.labels.message} <span className="text-crimson">*</span>
                 </label>
                 <textarea
                   name="message"
@@ -316,7 +317,7 @@ export default function BookingForm() {
                   value={fields.message}
                   onChange={e => set("message", e.target.value)}
                   onBlur={() => blur("message")}
-                  placeholder="Tell me about your project, event, or idea…"
+                  placeholder={t.booking.placeholders.message}
                   className={`${INPUT} resize-none leading-relaxed ${borderClass("message")}`}
                 />
                 <FieldError msg={fieldError("message")} />
@@ -334,7 +335,7 @@ export default function BookingForm() {
                       transition={{ duration: 0.25 }}
                       className="text-xs text-crimson font-body"
                     >
-                      Please fill out all required fields before sending.
+                      {t.booking.validation.allRequired}
                     </motion.p>
                   )}
                   {status === "error" && (
@@ -346,11 +347,11 @@ export default function BookingForm() {
                       transition={{ duration: 0.25 }}
                       className="text-xs text-crimson font-body"
                     >
-                      Something went wrong — please try again or email{" "}
+                      {t.booking.validation.errorSend}{" "}
                       <a href="mailto:anky.lohi5@gmail.com" className="underline">
                         anky.lohi5@gmail.com
                       </a>{" "}
-                      directly.
+                      {t.booking.validation.directly}
                     </motion.p>
                   )}
                 </AnimatePresence>
@@ -362,9 +363,9 @@ export default function BookingForm() {
                     className="inline-flex items-center gap-3 bg-crimson text-off-white font-body font-medium text-xs tracking-widest uppercase px-10 py-5 hover:bg-charcoal transition-colors duration-300 self-start disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === "sending" ? (
-                      <>Sending… <span aria-hidden="true" className="animate-pulse">●</span></>
+                      <>{t.booking.submit.sending} <span aria-hidden="true" className="animate-pulse">●</span></>
                     ) : (
-                      <>Send Message <span aria-hidden="true">→</span></>
+                      <>{t.booking.submit.send} <span aria-hidden="true">→</span></>
                     )}
                   </button>
 
@@ -373,7 +374,7 @@ export default function BookingForm() {
                       anky.lohi5@gmail.com
                     </span>
                     <span className="text-xs text-charcoal/20 font-body tracking-wide">
-                      Response within 48 hours
+                      {t.booking.responseTime}
                     </span>
                   </div>
                 </div>
@@ -393,7 +394,7 @@ export default function BookingForm() {
         >
           <div>
             <p className="text-[0.58rem] tracking-[0.3em] uppercase text-charcoal/25 font-body mb-1">
-              Studio
+              {t.booking.studio}
             </p>
             <p className="text-sm text-charcoal/55 font-body">
               Senovážné nám. 1464/6, 110 00 Nové Město, Praha
@@ -401,7 +402,7 @@ export default function BookingForm() {
           </div>
           <div>
             <p className="text-[0.58rem] tracking-[0.3em] uppercase text-charcoal/25 font-body mb-1">
-              Phone
+              {t.booking.phone}
             </p>
             <a
               href="tel:+420773115935"

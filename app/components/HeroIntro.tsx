@@ -10,6 +10,7 @@ import {
 } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "../providers/LanguageProvider";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const MASK = "linear-gradient(to bottom, black 0%, black 72%, rgba(0,0,0,0.88) 82%, rgba(0,0,0,0.5) 91%, transparent 98%)";
@@ -51,17 +52,16 @@ function TypeLine({
   );
 }
 
-const LABEL   = "Anky";
-const HEADING = "MUSIC PRODUCER · DJ";
-const P1 =
-  "I MAKE MUSIC IN TWO WORLDS, ON ONE SIDE, THERE'S HIPHOP AND R&B WITH THE VIBE, 808s, AND BEATS BUILT TO GIVE ARTISTS ROOM TO PERFORM. MY JOB IS TO CREATE A SPACE WHERE YOU CAN EXPRESS YOURSELF FREELY AND TRULY. ON THE OTHER SIDE, THERE'S ELECTRONIC MUSIC WITH A LOT OF SOUND DESIGNS AND HEAVY BASS. TWO DIFFERENT ENERGIES, BUT THE SAME GOAL: MUSIC THAT YOU CAN F*CKING FEEL, NOT SOME AI BULLSH*T";
-const P2 =
-  "Whatever I'm working on, it always comes back to atmosphere. When you listen to one of my tracks or catch one of my sets, I want you to instantly picture the world you're standing in — the lights, the space, the mood. I've always loved the cinematic side of sound, the way a single texture or tone can tell a whole story before the first lyric even lands. That feeling is what I chase in every project.";
-
 // Canvas: 350 vh mobile / 500 vh desktop (scroll travel 250 / 400 vh).
 // All animations complete by progress ≈ 0.55 → hold at black.
 export default function HeroIntro() {
   const ref = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
+
+  const LABEL   = t.hero.label;
+  const HEADING = t.hero.heading;
+  const P1      = t.hero.p1;
+  const P2      = t.hero.p2;
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -152,7 +152,7 @@ export default function HeroIntro() {
             href="/contact"
             className="inline-flex items-center gap-2 bg-crimson text-off-white font-body text-sm tracking-widest uppercase px-7 py-4 hover:bg-charcoal transition-colors duration-300"
           >
-            Contact Me <span aria-hidden="true" className="hidden sm:inline">↗</span>
+            {t.hero.contactMe} <span aria-hidden="true" className="hidden sm:inline">↗</span>
           </Link>
         </motion.div>
 
@@ -211,7 +211,7 @@ export default function HeroIntro() {
               href="/about"
               className="inline-flex items-center gap-2 border border-crimson text-off-white font-body text-xs sm:text-sm tracking-widest uppercase px-4 sm:px-7 py-3 sm:py-4 hover:bg-crimson transition-colors duration-300"
             >
-              Full Story <span aria-hidden="true">→</span>
+              {t.hero.fullStory} <span aria-hidden="true">→</span>
             </Link>
           </motion.div>
         </motion.div>

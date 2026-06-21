@@ -1,25 +1,22 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useLanguage } from "../../providers/LanguageProvider";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-const stats = [
-  { value: "8+",   label: "Years Active"      },
-  { value: "200+", label: "Tracks Produced"   },
-  { value: "50+",  label: "Live Performances" },
-  { value: "3",    label: "Studio Albums"     },
-];
-
-const milestones = [
-  { year: "2017", event: "Debut EP released — immediate reception from the underground circuit." },
-  { year: "2019", event: "First international booking at [Festival Name], [Country]." },
-  { year: "2021", event: "Collaborative LP with [Artist Name] — critically acclaimed release." },
-  { year: "2023", event: "Headlined [Venue / Event Name] — sold out in 48 hours." },
-  { year: "2024", event: "Released Dark Continuum — 10-track studio album." },
-];
-
 export default function CareerHighlights() {
+  const { t } = useLanguage();
+
+  const stats = [
+    { value: "8+",   label: t.career.stats.yearsActive      },
+    { value: "200+", label: t.career.stats.tracksProduced   },
+    { value: "50+",  label: t.career.stats.livePerformances },
+    { value: "3",    label: t.career.stats.studioAlbums     },
+  ];
+
+  const milestones = t.career.milestones;
+
   return (
     <>
       {/* ── Stats ─────────────────────────────────────────────── */}
@@ -59,7 +56,7 @@ export default function CareerHighlights() {
             className="flex items-center gap-6 mb-16"
           >
             <span className="text-xs tracking-[0.35em] text-olive-gold font-body uppercase whitespace-nowrap">
-              Career
+              {t.career.eyebrow}
             </span>
             <div className="flex-1 h-px bg-charcoal/10" />
           </motion.div>

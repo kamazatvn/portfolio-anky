@@ -9,6 +9,7 @@ import {
   useTransform,
   useSpring,
 } from "motion/react";
+import { useLanguage } from "../../providers/LanguageProvider";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -191,11 +192,14 @@ function ArtistCard({
 
 function ArtistModal({
   artist,
+  bio,
   onClose,
 }: {
   artist: Artist;
+  bio: string;
   onClose: () => void;
 }) {
+  const { t } = useLanguage();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -224,7 +228,7 @@ function ArtistModal({
         {/* Close */}
         <button
           onClick={onClose}
-          aria-label="Close"
+          aria-label={t.artists.close}
           className="absolute top-5 right-5 z-10 w-9 h-9 flex items-center justify-center text-sm text-off-white/50 hover:text-off-white hover:bg-off-white/10 transition-colors duration-200"
         >
           ✕
@@ -269,7 +273,7 @@ function ArtistModal({
               </div>
 
               <p className="text-off-white/60 font-body text-sm leading-relaxed">
-                {artist.bio}
+                {bio}
               </p>
             </div>
           </div>
@@ -280,7 +284,7 @@ function ArtistModal({
             style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
           >
             <p className="text-[0.55rem] tracking-[0.3em] font-body uppercase text-off-white/25 mb-3">
-              Listen on Spotify
+              {t.artists.listenOnSpotify}
             </p>
             <iframe
               src={`https://open.spotify.com/embed/artist/${artist.spotifyId}?utm_source=generator&theme=0`}
@@ -304,6 +308,7 @@ function ArtistModal({
 
 export default function ArtistsGrid() {
   const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
+  const { t } = useLanguage();
 
   return (
     <section className="px-5 md:px-16 lg:px-24 py-16 bg-off-white">
@@ -318,7 +323,7 @@ export default function ArtistsGrid() {
           className="flex items-center gap-6 mb-16"
         >
           <span className="text-xs tracking-[0.35em] text-olive-gold font-body uppercase whitespace-nowrap">
-            Featured Artists
+            {t.artists.sectionTitle}
           </span>
           <div className="flex-1 h-px bg-charcoal/10" />
           <span className="text-xs text-charcoal/20 font-body tabular-nums">
@@ -346,7 +351,7 @@ export default function ArtistsGrid() {
           transition={{ duration: 0.6, ease: EASE, delay: 0.3 }}
           className="text-xs tracking-[0.25em] text-charcoal/35 font-body uppercase mt-6 text-right"
         >
-          …and many more
+          {t.artists.andMore}
         </motion.p>
       </div>
 
@@ -355,6 +360,7 @@ export default function ArtistsGrid() {
         {selectedArtist && (
           <ArtistModal
             artist={selectedArtist}
+            bio={t.artists.bios[selectedArtist.name] ?? selectedArtist.bio}
             onClose={() => setSelectedArtist(null)}
           />
         )}

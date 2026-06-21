@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useLanguage } from "../../providers/LanguageProvider";
 
 const ADDRESS_LINE1 = "Senovážné nám. 1464/6";
 const ADDRESS_LINE2 = "110 00 Nové Město";
@@ -14,6 +15,7 @@ const MAPS_HREF =
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function ContactDetails() {
+  const { t } = useLanguage();
   return (
     <section className="bg-off-white border-t border-crimson/15">
       <div className="max-w-7xl mx-auto">
@@ -31,7 +33,7 @@ export default function ContactDetails() {
               {/* Address */}
               <div>
                 <p className="text-[0.65rem] tracking-[0.35em] text-crimson/50 font-body uppercase mb-3">
-                  Studio Address
+                  {t.contactDetails.studioAddress}
                 </p>
                 <address className="not-italic">
                   <p className="font-heading font-bold text-2xl md:text-3xl text-crimson leading-snug text-render-opt">
@@ -51,7 +53,7 @@ export default function ContactDetails() {
               {/* Phone */}
               <div>
                 <p className="text-[0.65rem] tracking-[0.35em] text-crimson/50 font-body uppercase mb-3">
-                  Phone
+                  {t.contactDetails.phone}
                 </p>
                 <a
                   href={`tel:${PHONE.replace(/\s/g, "")}`}
@@ -66,7 +68,7 @@ export default function ContactDetails() {
               {/* Email */}
               <div>
                 <p className="text-[0.65rem] tracking-[0.35em] text-crimson/50 font-body uppercase mb-3">
-                  Email
+                  {t.contactDetails.email}
                 </p>
                 <a
                   href="mailto:anky.lohi5@gmail.com"
@@ -94,7 +96,7 @@ export default function ContactDetails() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 border border-crimson text-crimson font-body text-xs tracking-widest uppercase px-7 py-4 hover:bg-crimson hover:text-off-white transition-colors duration-300"
                 >
-                  Get Directions <span aria-hidden="true">↗</span>
+                  {t.contactDetails.getDirections} <span aria-hidden="true">↗</span>
                 </a>
               </motion.div>
             </motion.div>

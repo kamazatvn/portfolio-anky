@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useLanguage } from "../../providers/LanguageProvider";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function BookHero() {
+  const { t } = useLanguage();
   return (
     <section
       className="relative overflow-hidden px-5 md:px-16 lg:px-24 pt-32 pb-12"
@@ -32,7 +34,7 @@ export default function BookHero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-xs tracking-[0.35em] text-crimson/60 font-body uppercase mb-10"
         >
-          Bookings &amp; Collaborations
+          {t.book.eyebrow}
         </motion.p>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
@@ -44,11 +46,11 @@ export default function BookHero() {
             className="lg:col-span-7"
           >
             <h1 className="font-heading font-black text-[clamp(2.8rem,8vw,7.5rem)] leading-[0.9] tracking-tight text-off-white text-render-opt">
-              WORK
+              {t.book.headingLine1}
               <br />
-              <span className="text-crimson">WITH</span>
+              <span className="text-crimson">{t.book.headingLine2}</span>
               <br />
-              ANKY
+              {t.book.headingLine3}
             </h1>
           </motion.div>
 
@@ -59,15 +61,11 @@ export default function BookHero() {
             className="lg:col-span-5 lg:pb-2 space-y-6"
           >
             <p className="text-off-white/70 font-body text-base leading-relaxed">
-              Hip-hop DJ performing at events and venues across Prague — blending
-              hip-hop, R&amp;B, and street culture into high-energy live sets built
-              for the room.
+              {t.book.djDesc}
             </p>
             <div className="h-px bg-off-white/10" />
             <p className="text-off-white/50 font-body text-sm leading-relaxed">
-              Music producer working with a wide range of artists across Vietnam
-              and the Czech Republic. Available for studio sessions, co-productions,
-              beatmaking, mixing, and creative direction.
+              {t.book.producerDesc}
             </p>
 
             <motion.div
@@ -79,7 +77,7 @@ export default function BookHero() {
                 href="/contact"
                 className="inline-flex items-center gap-3 bg-crimson text-off-white font-body text-xs tracking-widest uppercase px-8 py-4 hover:bg-off-white hover:text-charcoal transition-colors duration-300"
               >
-                Get In Touch <span aria-hidden="true">→</span>
+                {t.book.getInTouch} <span aria-hidden="true">→</span>
               </a>
             </motion.div>
           </motion.div>
