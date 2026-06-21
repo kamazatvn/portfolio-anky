@@ -1,46 +1,63 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "../providers/LanguageProvider";
 
-export default function LanguageToggle({ className }: { className?: string }) {
-  const { lang, setLang } = useLanguage();
+interface Props {
+  className?: string;
+  size?: "sm" | "lg";
+}
+
+function buildPaths(pathname: string) {
+  const isVN = pathname.startsWith("/vn");
+  // Strip /vn prefix; fall back to / when the result is empty
+  const basePath = isVN ? pathname.slice(3) || "/" : pathname;
+  const enHref = basePath;
+  const vnHref = "/vn" + (basePath === "/" ? "" : basePath);
+  return { isVN, enHref, vnHref };
+}
+
+export default function LanguageToggle({ className, size = "sm" }: Props) {
+  const pathname = usePathname();
+  const { lang } = useLanguage();
+  const { isVN, enHref, vnHref } = buildPaths(pathname);
+
+  const pad = size === "lg" ? "px-5 py-2.5 text-sm" : "px-3 py-1.5 text-[0.62rem]";
+  const base =
+    "font-body font-semibold tracking-[0.18em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson";
+  const active = "bg-crimson text-off-white";
+  const inactive = "text-charcoal/40 hover:text-charcoal hover:bg-charcoal/5";
 
   return (
     <div
+      role="group"
+      aria-label="Language selector"
       className={[
-        "flex items-center gap-1 text-[0.6rem] tracking-[0.2em] font-body select-none",
+        "inline-flex items-center overflow-hidden border border-charcoal/15 divide-x divide-charcoal/15",
         className,
-      ].join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
-      <button
-        onClick={() => setLang("en")}
-        aria-pressed={lang === "en"}
+      <Link
+        href={enHref}
+        aria-current={!isVN ? "page" : undefined}
         aria-label="Switch to English"
-        className={[
-          "transition-colors duration-200",
-          lang === "en"
-            ? "text-crimson"
-            : "text-charcoal/30 hover:text-charcoal",
-        ].join(" ")}
+        className={[base, pad, !isVN ? active : inactive].join(" ")}
+        prefetch={false}
       >
         EN
-      </button>
-      <span className="text-charcoal/20" aria-hidden="true">
-        /
-      </span>
-      <button
-        onClick={() => setLang("vi")}
-        aria-pressed={lang === "vi"}
+      </Link>
+      <Link
+        href={vnHref}
+        aria-current={isVN ? "page" : undefined}
         aria-label="Chuyển sang Tiếng Việt"
-        className={[
-          "transition-colors duration-200",
-          lang === "vi"
-            ? "text-crimson"
-            : "text-charcoal/30 hover:text-charcoal",
-        ].join(" ")}
+        className={[base, pad, isVN ? active : inactive].join(" ")}
+        prefetch={false}
       >
         VN
-      </button>
+      </Link>
     </div>
   );
 }

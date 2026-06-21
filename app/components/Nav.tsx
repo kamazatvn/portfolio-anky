@@ -14,13 +14,18 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 export default function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+
+  // Prefix nav hrefs with /vn when the visitor is on a VN page so all
+  // in-nav navigation stays within the same language subtree.
+  const p = lang === "vi" ? "/vn" : "";
+  const homeHref = lang === "vi" ? "/vn" : "/";
 
   const links: NavLink[] = [
-    { href: "/about",    label: t.nav.about     },
-    { href: "/projects", label: t.nav.portfolio  },
-    { href: "/book",     label: t.nav.book       },
-    { href: "/contact",  label: t.nav.contact    },
+    { href: `${p}/about`,    label: t.nav.about    },
+    { href: `${p}/projects`, label: t.nav.portfolio },
+    { href: `${p}/book`,     label: t.nav.book      },
+    { href: `${p}/contact`,  label: t.nav.contact   },
   ];
 
   // Lock body scroll while mobile menu is open
@@ -47,7 +52,7 @@ export default function Nav() {
 
           {/* Wordmark */}
           <Link
-            href="/"
+            href={homeHref}
             onClick={() => setOpen(false)}
             className="font-heading font-black text-xl text-crimson hover:text-charcoal transition-colors duration-300 text-render-opt
                        flex-1 text-center sm:flex-none sm:text-left sm:mr-auto"
@@ -159,9 +164,9 @@ export default function Nav() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.32, duration: 0.4 }}
-              className="absolute bottom-10 flex flex-col items-center gap-3"
+              className="absolute bottom-10 flex flex-col items-center gap-4"
             >
-              <LanguageToggle />
+              <LanguageToggle size="lg" />
               <p className="text-[0.6rem] tracking-[0.3em] text-charcoal/20 font-body uppercase">
                 anky.lohi5@gmail.com
               </p>

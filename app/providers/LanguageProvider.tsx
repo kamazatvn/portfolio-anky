@@ -1,40 +1,23 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext } from "react";
+import { usePathname } from "next/navigation";
 import { translations, type Lang, type Translations } from "../i18n/translations";
-
-const STORAGE_KEY = "anky-lang";
 
 interface LanguageContextValue {
   lang: Lang;
-  setLang: (l: Lang) => void;
   t: Translations;
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
-
-  // Hydrate from localStorage after mount (avoids SSR mismatch)
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as Lang | null;
-    if (stored === "en" || stored === "vi") setLangState(stored);
-  }, []);
-
-  const setLang = useCallback((l: Lang) => {
-    setLangState(l);
-    localStorage.setItem(STORAGE_KEY, l);
-  }, []);
+  const pathname = usePathname();
+  // Language is entirely URL-driven: /vn/* → vi, everything else → en
+  const lang: Lang = pathname.startsWith("/vn") ? "vi" : "en";
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t: translations[lang] }}>
+    <LanguageContext.Provider value={{ lang, t: translations[lang] }}>
       {children}
     </LanguageContext.Provider>
   );
