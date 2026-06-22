@@ -27,7 +27,7 @@ export const ARTISTS: Artist[] = [
     name: "LOWG",
     country: "VN",
     image: "/artist/lowg.jpg",
-    genres: ["Hip-Hop", "Rap"],
+    genres: ["Hiphop Trap"],
     bio: "One of Vietnam's most dynamic rap artists, LOWG blends sharp lyricism with melodic sensibility. Anky's production crafted the atmospheric undertones that have become a hallmark of LOWG's studio sound.",
     spotifyId: "6TITnFVRcl0AcZ4syE7Toe",
   },
@@ -35,7 +35,7 @@ export const ARTISTS: Artist[] = [
     name: "7DNIGHT",
     country: "VN",
     image: "/artist/7dnight.jpg",
-    genres: ["R&B", "Pop", "Soul"],
+    genres: ["Hiphop Trap"],
     bio: "7DNIGHT is a multi-layered R&B act known for emotionally charged vocals and cinematic production. Their collaboration with Anky spans multiple releases, each pushing the boundaries of Vietnamese contemporary R&B.",
     spotifyId: "3gucoX521KgXuoUnRbn0Bn",
   },
@@ -43,7 +43,7 @@ export const ARTISTS: Artist[] = [
     name: "BLACKA",
     country: "VN",
     image: "/artist/blacka.jpeg",
-    genres: ["Hip-Hop", "Trap", "Rap"],
+    genres: ["Hiphop Trap"],
     bio: "BLACKA is one of Vietnam's foremost hip-hop voices, delivering hard-hitting tracks with undeniable presence. Anky's production brings a dark, textured backdrop that amplifies BLACKA's commanding delivery.",
     spotifyId: "0JggLWdYe1p6oHZoHpyPSD",
   },
@@ -51,7 +51,7 @@ export const ARTISTS: Artist[] = [
     name: "MARTIN MATYS",
     country: "CZ",
     image: "/artist/martinmatys.png",
-    genres: ["Electronic", "House", "Techno"],
+    genres: ["Hiphop Trap"],
     bio: "Prague-based Martin Matys is a forward-thinking electronic artist whose work sits at the intersection of deep house and contemporary techno. His collaboration with Anky reflects a shared commitment to dancefloor craft.",
     spotifyId: "2Uk5UpPwQk0VfE2NJ9Eget",
   },
@@ -59,7 +59,7 @@ export const ARTISTS: Artist[] = [
     name: "52HZ",
     country: "VN",
     image: "/artist/52hz.jpeg",
-    genres: ["Electronic", "Ambient", "Pop"],
+    genres: ["Pop R&B"],
     bio: "Named after the loneliest whale, 52HZ crafts introspective electronic music that resonates deeply with a generation searching for connection. Anky's contributions add textural depth and rhythmic precision to their releases.",
     spotifyId: "1y28JlO6rDMUB5rkcA4RAh",
   },
@@ -67,7 +67,7 @@ export const ARTISTS: Artist[] = [
     name: "SA MILO",
     country: "VN",
     image: "/artist/samilo.jpeg",
-    genres: ["Pop", "R&B", "Electronic"],
+    genres: ["Hiphop Trap"],
     bio: "SA MILO is a Vietnamese artist known for blending pop sensibility with electronic edge. Their collaboration with Anky spans both studio productions and live arrangements, building a distinctive crossover sound.",
     spotifyId: "55YrB6LSt3ZShzAiBXTEcA",
   },
@@ -75,7 +75,7 @@ export const ARTISTS: Artist[] = [
     name: "TAGE",
     country: "VN",
     image: "/artist/tage.jpeg",
-    genres: ["Rap", "Hip-Hop", "Trap"],
+    genres: ["Hiphop Trap"],
     bio: "TAGE is an emerging voice in Vietnam's rap scene, known for raw energy and an unfiltered approach to storytelling. Anky's production gives TAGE's visceral delivery a polished, hard-hitting sonic foundation.",
     spotifyId: "6kFhNMq6O8P5QKdqlGMUVW",
   },
@@ -169,7 +169,10 @@ function ArtistCard({
         {/* Name area */}
         <div className="absolute bottom-0 left-0 right-0 p-5">
           <div className="w-8 h-px bg-crimson/50 group-hover:bg-crimson mb-3 transition-colors duration-300" />
-          <h3 className="font-heading font-black text-off-white text-render-opt leading-tight text-[clamp(1rem,2.8vw,1.5rem)]">
+          <h3
+            className="font-heading font-black text-off-white text-render-opt leading-tight text-[clamp(1rem,2.8vw,1.5rem)]"
+            style={{ fontFamily: '"Neue Plak", "Arial Black", sans-serif' }}
+          >
             {artist.name}
           </h3>
           <div className="flex flex-wrap gap-1.5 mt-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
@@ -256,7 +259,10 @@ function ArtistModal({
                 <span className="text-[0.58rem] tracking-[0.3em] font-body uppercase text-crimson/70">
                   {artist.country}
                 </span>
-                <h2 className="font-heading font-black text-off-white text-[clamp(1.5rem,4vw,2.25rem)] leading-tight text-render-opt mt-1">
+                <h2
+                  className="font-heading font-black text-off-white text-[clamp(1.5rem,4vw,2.25rem)] leading-tight text-render-opt mt-1"
+                  style={{ fontFamily: '"Neue Plak", "Arial Black", sans-serif' }}
+                >
                   {artist.name}
                 </h2>
               </div>

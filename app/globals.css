@@ -65,6 +65,20 @@
   --spacing-30: 7.5rem;
 }
 
+/* ─── Vietnamese font override ───────────────────────────────────────────── */
+/* Neue Plak lacks Vietnamese diacritics; Be Vietnam Pro is a geometric match  */
+[lang="vi"] {
+  --font-heading: var(--font-be-vietnam), "Arial Black", sans-serif;
+  --font-body:    var(--font-be-vietnam), "Century Gothic", sans-serif;
+}
+
+/* Nav and wordmark always render in Neue Plak / Avant Garde Gothic.
+   The header is the one element that must stay brand-consistent in every lang. */
+[lang="vi"] header {
+  --font-heading: "Neue Plak", "Arial Black", sans-serif;
+  --font-body:    "Avant Garde Gothic", "Century Gothic", "Trebuchet MS", sans-serif;
+}
+
 /* ─── Base layer ─────────────────────────────────────────────────────────── */
 /* Hide native cursor on pointer (mouse) devices — CustomCursor replaces it */
 @media (pointer: fine) {

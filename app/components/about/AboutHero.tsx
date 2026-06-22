@@ -237,7 +237,7 @@ function StatCounter({
 /* ─── Main component ─────────────────────────────────────────────────────── */
 
 export default function AboutHero() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   return (
     <>
       {/* ── 1. Intro ──────────────────────────────────────────────── */}
@@ -260,7 +260,7 @@ export default function AboutHero() {
                 initial={{ opacity: 0, y: 32 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
-                className="font-heading font-black text-[clamp(3rem,8vw,7rem)] leading-[0.9] tracking-tight text-crimson text-render-opt"
+                className={`font-heading font-black text-[clamp(3rem,8vw,7rem)] tracking-tight text-crimson text-render-opt ${lang === "vi" ? "leading-[1.1]" : "leading-[0.9]"}`}
               >
                 {t.about.headingLine1}
                 <br />

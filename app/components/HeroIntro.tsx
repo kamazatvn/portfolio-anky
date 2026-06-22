@@ -56,7 +56,7 @@ function TypeLine({
 // All animations complete by progress ≈ 0.55 → hold at black.
 export default function HeroIntro() {
   const ref = useRef<HTMLDivElement>(null);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const LABEL   = t.hero.label;
   const HEADING = t.hero.heading;
@@ -104,6 +104,7 @@ export default function HeroIntro() {
         >
           <h1
             className="font-heading font-black leading-none tracking-tight text-crimson text-render-opt anky-hero-size"
+            style={{ fontFamily: '"Neue Plak", "Arial Black", sans-serif' }}
           >
             ANKY
           </h1>
@@ -151,6 +152,7 @@ export default function HeroIntro() {
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 bg-crimson text-off-white font-body text-sm tracking-widest uppercase px-7 py-4 hover:bg-charcoal transition-colors duration-300"
+            style={{ fontFamily: '"Avant Garde Gothic", "Century Gothic", "Trebuchet MS", sans-serif' }}
           >
             {t.hero.contactMe} <span aria-hidden="true" className="hidden sm:inline">↗</span>
           </Link>
@@ -176,7 +178,7 @@ export default function HeroIntro() {
 
           {/* Title — Neue Plak + ALL CAPS */}
           <h2
-            className="font-heading font-black leading-[0.92] tracking-tight text-off-white text-render-opt mb-4"
+            className={`font-heading font-black tracking-tight text-off-white text-render-opt mb-4 ${lang === "vi" ? "leading-[1.15]" : "leading-[0.92]"}`}
             style={{ fontSize: "clamp(1.8rem, 5vw, 6.5rem)" }}
           >
             <TypeLine text={HEADING} progress={scrollYProgress} range={[0.26, 0.33]} />
@@ -191,7 +193,7 @@ export default function HeroIntro() {
           <div className="space-y-4 mb-8">
             <div className="flex items-start gap-2.5">
               <span className="triangle-blink mt-0.5" />
-              <p className="font-heading font-black uppercase text-off-white/80 text-[0.72rem] sm:text-[0.8rem] lg:text-[0.9rem] leading-snug tracking-wider">
+              <p className={`font-heading font-black uppercase text-off-white/80 text-[0.72rem] sm:text-[0.8rem] lg:text-[0.9rem] tracking-wider ${lang === "vi" ? "leading-relaxed" : "leading-snug"}`}>
                 <TypeLine text={P1} progress={scrollYProgress} range={[0.32, 0.46]} />
               </p>
             </div>
@@ -199,7 +201,7 @@ export default function HeroIntro() {
               <span className="triangle-blink mt-0.5" />
               <p
                 className="font-normal uppercase text-off-white/50 text-[0.68rem] sm:text-[0.75rem] lg:text-[0.85rem] leading-loose tracking-wide"
-                style={{ fontFamily: '"Avant Garde Gothic", "Century Gothic", sans-serif' }}
+                style={{ fontFamily: "var(--font-body)" }}
               >
                 <TypeLine text={P2} progress={scrollYProgress} range={[0.45, 0.54]} />
               </p>

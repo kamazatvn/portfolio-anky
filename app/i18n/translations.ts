@@ -197,8 +197,8 @@ const vi: typeof en = {
   },
   nav: {
     about: "Giới Thiệu",
-    portfolio: "Danh Mục",
-    book: "Đặt Lịch",
+    portfolio: "Portfolio",
+    book: "Book",
     contact: "Liên Hệ",
     openMenu: "Mở menu",
     closeMenu: "Đóng menu",
@@ -206,9 +206,9 @@ const vi: typeof en = {
   hero: {
     label: "Anky",
     heading: "NHẠC SĨ SẢN XUẤT · DJ",
-    p1: "Tôi làm nhạc trong hai thế giới. Một bên là hip-hop và R&B với tinh thần, phần 808s và những beat được tạo ra để cho nghệ sĩ có không gian thể hiện. Nhiệm vụ của tôi là tạo ra một không gian nơi bạn có thể bộc lộ bản thân một cách tự do và chân thật. Bên kia là âm nhạc điện tử với vô số thiết kế âm thanh và bass nặng nề. Hai nguồn năng lượng khác nhau, nhưng cùng một mục tiêu: âm nhạc mà bạn có thể thực sự cảm nhận, không phải mấy thứ AI vô hồn",
-    p2: "Dù đang làm gì, tôi luôn quay về với bầu không khí. Khi bạn nghe một bản nhạc của tôi hay bắt gặp một set diễn, tôi muốn bạn ngay lập tức hình dung ra thế giới mình đang đứng trong đó — ánh đèn, không gian, tâm trạng. Tôi luôn yêu thích chiều sâu điện ảnh của âm thanh, cách mà một kết cấu hay âm sắc có thể kể cả một câu chuyện trước khi lời đầu tiên chạm đến tai. Đó là cảm giác tôi theo đuổi trong mỗi dự án.",
-    contactMe: "Liên Hệ",
+    p1: "MÌNH LÀM NHẠC CHO HAI THẾ GIỚI, MỘT BÊN LÀ HIPHOP VÀ R&B, CÓ 808 VÀ CÁC ĐOẠN BEAT ĐƯỢC TẠO RA ĐỂ CHO NGHỆ SĨ CÓ ĐỦ KHÔNG GIAN THỂ HIỆN. NHIỆM VỤ CỦA MÌNH LÀ TẠO RA MỘT KHÔNG GIAN NƠI BẠN CÓ THỂ ĐƯỢC THỂ HIỆN BẢN THÂN MÌNH MỘT CÁCH TỰ DO. BÊN KIA LÀ ÂM NHẠC ĐIỆN TỬ, TẬP CHUNG VÀO SOUND DESIGN VÀ BASS. HAI NGUỒN NĂNG LƯỢNG KHÁC NHAU, NHƯNG CÙNG MỘT MỤC TIÊU ĐÓ LÀ: ÂM NHẠC MÀ BẠN CÓ THỂ THỰC SỰ CẢM NHẬN ĐƯỢC.",
+    p2: "DÙ ĐANG LÀM GÌ, MÌNH LUÔN QUAY VỀ VỚI CHIỀU SÂU CỦA BẦU KHÔNG KHÍ, KHI BẠN NGHE MỘT BÀI NHẠC CỦA MÌNH HAY BẤT CỨ KHI NÀO MÌNH DIỄN, MÌNH LUÔN MUỐN BẠN CÓ THỂ HÌNH DUNG RA THẾ GIỚI MÌNH ĐANG ĐỨNG TRONG ĐÓ: ÁNH ĐÈN, KHÔNG GIAN, TÂM TRẠNG. MÌNH LUÔN YÊU THÍCH CHIỀU SÂU CỦA ÂM THANH, CÁCH MÀ MỘT KẾT CẤU HAY ÂM SẮC CÓ THỂ KỂ CẢ MỘT CÂU CHUYỆN TRƯỚC KHI CÓ VOCAL. ĐÓ LÀ CẢM GIÁC TÔI LUÔN THEO ĐUỔI TRONG MỖI DỰ ÁN.",
+    contactMe: "Contact me",
     fullStory: "Câu Chuyện",
   },
   footer: {
@@ -234,14 +234,14 @@ const vi: typeof en = {
     headingLine1: "HÃY",
     headingLine2: "LÀM THEO",
     headingLine3: "CẢM XÚC",
-    p1: "ANKY là một nhạc sĩ sản xuất đa thể loại, DJ và kỹ sư âm thanh có gốc gác từ Việt Nam và hiện đang sinh sống tại Prague, Cộng hòa Séc. Với hơn tám năm trong ngành âm nhạc, anh đã xây dựng danh tiếng về sự đa năng, di chuyển thoải mái giữa hip-hop, R&B và âm nhạc điện tử. Dù trong phòng thu hay sau bàn đĩa, mục tiêu của anh vẫn nhất quán: tạo ra âm thanh kết nối với mọi người ngay lập tức.",
-    p2: "Trong cuộc sống, ANKY vốn điềm tĩnh với phong cách gọn gàng, tối giản, nhưng âm nhạc của anh lại kể một câu chuyện khác. Trên sân khấu và trong phòng thu, anh mang đến một trải nghiệm sống động, đầy năng lượng, khiến đám đông bùng cháy và giữ họ ở lại. Qua nhiều năm, anh đã hợp tác với nhiều nghệ sĩ nổi tiếng ở cả Việt Nam lẫn Cộng hòa Séc. Sự kết hợp giữa tự tin thầm lặng và âm thanh mạnh mẽ đó đã trở thành dấu ấn riêng của anh.",
-    p3: "Sứ mệnh của ANKY không chỉ dừng lại ở việc tạo ra những bản nhạc hay. Mục tiêu cuối cùng của anh là hòa quyện âm nhạc điện tử hiện đại với các phong cách và yếu tố truyền thống Việt Nam một cách tinh tế, tạo nên một âm thanh chỉ thuộc về anh. Anh tin rằng hai thế giới này không đối lập nhau — chúng là một cặp hoàn hảo đang chờ được kết hợp. Qua mỗi sản phẩm và mỗi buổi biểu diễn, anh đang từng bước đưa âm thanh độc đáo đó lên sân khấu toàn cầu.",
+    p1: "ANKY LÀ MỘT NHẠC SĨ SẢN XUẤT ĐA THỂ LOẠI, DJ VÀ KỸ SƯ ÂM THANH CÓ GỐC GÁC TỪ VIỆT NAM VÀ HIỆN ĐANG SINH SỐNG TẠI PRAGUE, CỘNG HÒA SÉC. VỚI HƠN TÁM NĂM TRONG NGÀNH ÂM NHẠC, ANH ĐÃ XÂY DỰNG DANH TIẾNG VỀ SỰ ĐA NĂNG, DI CHUYỂN THOẢI MÁI GIỮA HIPHOP, R&B VÀ ÂM NHẠC ĐIỆN TỬ. DÙ TRONG PHÒNG THU HAY SAU BÀN DJ, MỤC TIÊU CỦA ANH VẪN NHẤT QUÁN: TẠO RA ÂM THANH KẾT NỐI MỌI NGƯỜI VỚI NHAU.",
+    p2: "TRONG CUỘC SỐNG, ANKY VỐN ĐIỀM TĨNH VỚI PHONG CÁCH GỌN GÀNG, TỐI GIẢ, NHƯNG ÂM NHẠC CỦA ANH LẠI KỂ MỘT CÂU CHUYỆN KHÁC. TRÊN SÂN KHẤU VÀ TRONG PHÒNG THU, ANH MANG ĐẾN MỘT TRẢI NGHIỆM SỐNG ĐỘNG, ĐẦY NĂNG LƯỢNG. QUA NHIỀU NĂM, ANH ĐÃ HỢP TÁC VỚI NHIỀU NGHỆ SĨ NỔI TIẾNG Ở CẢ VIỆT NAM LẪN CỘNG HÒA SÉC. SỰ KẾT HỢP CÓ PHẦN TƯƠNG PHẢN ĐÓ ĐÃ TRỞ THÀNH DẤU ẤN RIÊNG CỦA ANH.",
+    p3: "SỨ MỆNH CỦA ANKY KHÔNG CHỈ DỪNG LẠI Ở VIỆC TẠO RA NHỮNG BẢN NHẠC HAY. MỤC TIÊU CUỐI CÙNG CỦA ANH LÀ HÒA QUYỆN ÂM NHẠC ĐIỆN TỬ HIỆN ĐẠI VỚI CÁC PHONG CÁCH VÀ YẾU TỐ TRUYỀN THỐNG VIỆT NAM MỘT CÁCH TINH TẾ, TẠO NÊN MỘT ÂM THANH CHỈ THUỘC VỀ ANH. ANH TIN RẰNG HAI THẾ GIỚI NÀY KHÔNG ĐỐI LẬP NHAU, CHÚNG LÀ MỘT CẶP HOÀN HẢO ĐANG CHỜ ĐƯỢC KẾT HỢP. QUA MỖI SẢN PHẨM VÀ MỖI BUỔI BIỂU DIỄN, ANH ĐANG TỪNG BƯỚC ĐƯA ÂM THANH ĐỘC ĐÁO ĐÓ LÊN SÂN KHẤU TOÀN CẦU.",
     philosophy: "Triết Lý",
     philosophyQuote:
-      "“Âm nhạc hay tạo ra một thế giới riêng. Tôi tập trung hoàn toàn vào bầu không khí và cảm xúc. Tôi thiết kế âm thanh và sản xuất những bản nhạc được tạo ra để trải nghiệm trọn vẹn, mang đến cho người nghe một không gian điện ảnh nơi họ có thể ngay lập tức tưởng tượng bản thân và buông thả hoàn toàn.”",
+      "“Âm nhạc hay tạo ra một thế giới riêng. Mình tập trung hoàn toàn vào bầu không khí và cảm xúc. Mình thiết kế âm thanh và sản xuất những bản nhạc được tạo ra để trải nghiệm trọn vẹn, mang đến cho người nghe một không gian cinematic, nơi họ có thể ngay lập tức tưởng tượng bản thân và buông thả hoàn toàn.”",
     philosophyBody:
-      "Để tạo ra những không gian đó, tôi dựa vào sự tương phản. Tôi thích pha trộn năng lượng điện tử nặng nề, hiện đại với những kết cấu sâu lắng, truyền thống của nguồn gốc Việt Nam. Trong khi phong cách cá nhân trong phòng thu của tôi bình tĩnh và tối giản, bản thân âm thanh lại được thiết kế đầy màu sắc và sinh động, mang đến cho khán giả một không gian tuyệt vời để họ có thể tự do chuyển động, cảm nhận bass và hoàn toàn hòa mình vào khoảnh khắc.",
+      "Để tạo ra những không gian đó, mình dựa vào sự tương phản. Mình thích pha trộn năng lượng điện tử hiện đại với những âm thanh truyền thống của nguồn gốc Việt Nam. Trong khi phong cách cá nhân trong phòng thu của mình bình tĩnh và tối giản, bản thân âm thanh lại được thiết kế đầy màu sắc và sinh động, mang đến cho khán giả một không gian tuyệt vời để họ có thể tự do chuyển động, cảm nhận và hoàn toàn hòa mình vào khoảnh khắc.",
     poweredBy: "Vận Hành Bởi",
     yearsActive: "Năm Hoạt Động",
     tracksProduced: "Bản Nhạc Sản Xuất",
@@ -269,7 +269,7 @@ const vi: typeof en = {
     headingLine2: "CÙNG",
     headingLine3: "ANKY",
     djDesc:
-      "DJ hip-hop biểu diễn tại các sự kiện và địa điểm khắp Prague — pha trộn hip-hop, R&B và văn hóa đường phố thành những set live đầy năng lượng được xây dựng cho không gian đó.",
+      "DJ hip-hop biểu diễn tại các sự kiện và địa điểm khắp Prague ; pha trộn hip-hop, R&B và văn hóa đường phố thành những set live đầy năng lượng được xây dựng cho không gian đó.",
     producerDesc:
       "Nhạc sĩ sản xuất làm việc với nhiều nghệ sĩ đa dạng tại Việt Nam và Cộng hòa Séc. Sẵn sàng cho các buổi thu âm, đồng sản xuất, làm beat, mixing và chỉ đạo sáng tạo.",
     getInTouch: "Liên Hệ Ngay",

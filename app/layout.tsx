@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
+import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
+
+const beVietnamPro = Be_Vietnam_Pro({
+  subsets: ["vietnamese", "latin"],
+  weight: ["400", "500", "700", "800", "900"],
+  variable: "--font-be-vietnam",
+  display: "swap",
+});
 import { LanguageProvider } from "./providers/LanguageProvider";
 import SmoothScrollProvider  from "./providers/SmoothScrollProvider";
 import { AudioPlayerProvider } from "./providers/AudioPlayerProvider";
@@ -188,7 +196,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       </head>
-      <body className="min-h-full antialiased flex flex-col">
+      <body className={`min-h-full antialiased flex flex-col ${beVietnamPro.variable}`}>
         <LanguageProvider>
           <LanguageMeta />
           <SmoothScrollProvider>

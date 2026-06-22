@@ -6,7 +6,7 @@ import { useLanguage } from "../../providers/LanguageProvider";
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function BookHero() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   return (
     <section
       className="relative overflow-hidden px-5 md:px-16 lg:px-24 pt-32 pb-12"
@@ -45,7 +45,7 @@ export default function BookHero() {
             transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
             className="lg:col-span-7"
           >
-            <h1 className="font-heading font-black text-[clamp(2.8rem,8vw,7.5rem)] leading-[0.9] tracking-tight text-off-white text-render-opt">
+            <h1 className={`font-heading font-black text-[clamp(2.8rem,8vw,7.5rem)] tracking-tight text-off-white text-render-opt ${lang === "vi" ? "leading-[1.1]" : "leading-[0.9]"}`}>
               {t.book.headingLine1}
               <br />
               <span className="text-crimson">{t.book.headingLine2}</span>
@@ -60,11 +60,17 @@ export default function BookHero() {
             transition={{ duration: 0.7, ease: EASE, delay: 0.4 }}
             className="lg:col-span-5 lg:pb-2 space-y-6"
           >
-            <p className="text-off-white/70 font-body text-base leading-relaxed">
+            <p
+              className="text-off-white/70 font-body text-base leading-relaxed"
+              style={{ fontFamily: "'Avant Garde Gothic', 'Century Gothic', 'Trebuchet MS', sans-serif" }}
+            >
               {t.book.djDesc}
             </p>
             <div className="h-px bg-off-white/10" />
-            <p className="text-off-white/50 font-body text-sm leading-relaxed">
+            <p
+              className="text-off-white/50 font-body text-sm leading-relaxed"
+              style={{ fontFamily: "'Avant Garde Gothic', 'Century Gothic', 'Trebuchet MS', sans-serif" }}
+            >
               {t.book.producerDesc}
             </p>
 
