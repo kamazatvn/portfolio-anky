@@ -58,8 +58,6 @@ const en = {
     yearsActive: "Years Active",
     tracksProduced: "Tracks Produced",
     livePerformances: "Live Performances",
-    producerTagAriaLabel: "Play Anky's producer tag",
-    producerTagHint: "← click me",
   },
   career: {
     eyebrow: "Career",
@@ -248,8 +246,6 @@ const vi: typeof en = {
     yearsActive: "Năm Hoạt Động",
     tracksProduced: "Bản Nhạc Sản Xuất",
     livePerformances: "Buổi Biểu Diễn",
-    producerTagAriaLabel: "Phát producer tag của Anky",
-    producerTagHint: "← bấm vào đây",
   },
   career: {
     eyebrow: "Sự Nghiệp",
