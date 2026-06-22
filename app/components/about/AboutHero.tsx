@@ -11,6 +11,7 @@ import {
 } from "motion/react";
 import Image from "next/image";
 import { useLanguage } from "../../providers/LanguageProvider";
+import ProducerTagButton from "./ProducerTagButton";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -283,6 +284,15 @@ export default function AboutHero() {
                   </div>
                 }
               />
+
+              {/* Producer tag pad */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, ease: EASE, delay: 0.4 }}
+              >
+                <ProducerTagButton />
+              </motion.div>
 
               {/* Lohi5 Production credit */}
               <div className="flex items-center gap-3 pt-6 border-t border-charcoal/10">
